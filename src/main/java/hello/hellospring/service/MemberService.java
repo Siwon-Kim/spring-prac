@@ -2,14 +2,17 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 // business logic을 다루는 service class
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository; // 외부에서 리파지토리를 주입할 수 있도록 생성자 설정
+    }
 
     // 회원가입
     public Long signUp(Member member) {
