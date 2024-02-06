@@ -2,14 +2,19 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 // business logic을 다루는 service class
+@Service
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    // spring bean에 등록되어 있는 repository를 생성자에 넣어준다 => DI: service - repository 연결
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository; // 외부에서 리파지토리를 주입할 수 있도록 생성자 설정
     }
